@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://univ.fr/sepa"
+    xmlns="http://univ.fr/sepa">
+    
+    <xs:element name="CstmrDrctDbtInitn" type="rootType"/>
+    
+    <!-- Direct Debit Transaction Information -->
+    <xs:element name="DrctDbtTxInf" type="ddtiType" />
+    <!-- Direct Debit Transaction -->
+    <xs:element name="DrctDbtTx" type="ddtType" />
+    <!-- Debtor Agent -->
+    <xs:element name="DbtrAgt" type="dAgentType" />
+    <!-- Debtor -->
+    <xs:element name="Dbtr" type="debtorType" />
+    <!-- Debtor Account -->
+    <xs:element name="DbtrAcct" type="dAccountType" />
+
+    <xs:simpleType name="max35Text">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"></xs:minLength>
+            <xs:maxLength value="35"></xs:maxLength>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="IBANType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z]{2,2}[0-9]{2,2}[A-Z0-9]{1,30}"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="BICType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z]{8,11}"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+    
+	<xs:complexType name="InstdAmtType">
+	  <xs:simpleContent>
+	    <xs:extension base="xs:decimal">
+	      <xs:attribute name="Ccy" use="required" type="xs:string">
+	      </xs:attribute>
+	    </xs:extension>
+	  </xs:simpleContent>
+	</xs:complexType>
+	
+	<xs:complexType name="rootType">
+	   <xs:sequence>
+	       <xs:element ref="DrctDbtTxInf" minOccurs="1" maxOccurs="unbounded"/>
+	   </xs:sequence>
+	</xs:complexType>
+	
+    <xs:complexType name="ddtiType">
+        <xs:sequence>
+            <!-- Payment Information -->
+            <xs:element name="PmtId" minOccurs="1" maxOccurs="1" type="max35Text"/>
+            
+            <!-- Instructed Amount -->
+            <xs:element name="InstdAmt" minOccurs="1" maxOccurs="1" type="InstdAmtType"/>
+            
+            <xs:element ref="DrctDbtTx" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="DbtrAgt" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="Dbtr" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="DbtrAcct" minOccurs="1" maxOccurs="1"/>
+            
+            <!-- Remittance Information -->
+            <xs:element name="RmtInf" minOccurs="0" maxOccurs="unbounded" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="ddtType">
+        <xs:sequence>
+            <!--   Mandate Identifier -->
+            <xs:element name="MndtId" minOccurs="1" maxOccurs="1" type="max35Text"/>
+            <!-- Date of signature -->
+            <xs:element name="DtOfSgntr" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="dAgentType">
+        <xs:choice>
+            <xs:element name="BIC" minOccurs="1" maxOccurs="1" type="BICType"/>
+            <xs:element name="Id" minOccurs="1" maxOccurs="1" type="max35Text"/>
+        </xs:choice>
+    </xs:complexType>
+    
+    <xs:complexType name="debtorType">
+        <xs:sequence>
+            <!-- Name -->
+            <xs:element name="Nm" minOccurs="1" maxOccurs="1" type="max35Text"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="dAccountType">
+        <xs:choice>
+            <xs:element name="IBAN" minOccurs="1" maxOccurs="1" type="IBANType"/>
+            <!-- Private Identification -->
+            <xs:element name="PrvtId" minOccurs="1" maxOccurs="1" type="max35Text"/>
+        </xs:choice>
+    </xs:complexType>
+</xs:schema>

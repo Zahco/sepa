@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="tp3.sepa-html.01.xsl"?>
+
+<p:DrctDbtTxInf xmlns:p="http://univ.fr/sepa" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://univ.fr/sepa tp1.sepa.01.xsd ">
+  <PmtId>TEST#001</PmtId>
+  <InstdAmt Ccy="EUR">321.05</InstdAmt>
+  <p:DrctDbtTx>
+    <MndtId>FF-57-E7</MndtId>
+    <DtOfSgntr>2001-01-01</DtOfSgntr>
+  </p:DrctDbtTx>
+  <p:DbtrAgt>
+    <BIC>DAEOFRPPCCT</BIC>
+  </p:DbtrAgt>
+  <p:Dbtr>
+    <Nm>Mr Dupont</Nm>
+  </p:Dbtr>
+  <p:DbtrAcct>
+    <IBAN>FE1405643596877A</IBAN>
+  </p:DbtrAcct>
+  <RmtInf>Ceci est un commentaire</RmtInf>
+</p:DrctDbtTxInf>

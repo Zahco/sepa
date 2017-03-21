@@ -3,12 +3,12 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>m1gil.cloud</groupId>
-  <artifactId>rest-service</artifactId>
+  <groupId>m1gil.sepa</groupId>
+  <artifactId>sepa-service</artifactId>
   <version>1.0</version>
   <packaging>war</packaging>
-  <name>Zoo manager</name>
-  <description>Rest Web-service for zoo management</description>
+  <name>Sepa manager</name>
+  <description>Rest Web-service for sepa management</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
