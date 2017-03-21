@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://cxf.apache.org/jaxrs
+http://cxf.apache.org/schemas/jaxrs.xsd">
+
+  <import resource="classpath:META-INF/cxf/cxf.xml"/>
+
+  <jaxrs:server id="services" address="/">
+    <jaxrs:serviceBeans>
+      <bean class="tp.rest.MyServiceTP"/>
+    </jaxrs:serviceBeans>
+
+    <jaxrs:providers>
+      <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>
+    </jaxrs:providers>
+  </jaxrs:server>
+
+  <!-- enable CXF JMX -->
+  <bean id="org.apache.cxf.management.InstrumentationManager"
+        class="org.apache.cxf.management.jmx.InstrumentationManagerImpl">
+    <property name="enabled" value="true"/>
+    <property name="bus" ref="cxf"/>
+    <property name="usePlatformMBeanServer" value="true"/>
+    <property name="createMBServerConnectorFactory" value="false"/>
+  </bean>
+
+</beans>
+
