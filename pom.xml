@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>m1gil.sepa</groupId>
-  <artifactId>sepa-service</artifactId>
+  <artifactId>sepa-server</artifactId>
   <version>1.0</version>
   <packaging>war</packaging>
   <name>Sepa manager</name>
@@ -88,7 +88,7 @@
             </goals>
             <configuration>
               <classResourceNames>
-                <classResourceName>tp.rest.MyServiceTP</classResourceName>
+                <classResourceName>rest.MyServiceTP</classResourceName>
               </classResourceNames>
               <attachWadl>false</attachWadl>
             </configuration>

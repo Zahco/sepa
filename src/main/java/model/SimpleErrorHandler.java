@@ -1,4 +1,4 @@
-package tp.model;
+package model;
 
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;

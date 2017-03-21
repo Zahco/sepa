@@ -1,6 +1,6 @@
-package tp.rest;
+package rest;
 
-import tp.model.*;
+import model.*;
 
 import javax.ws.rs.*;
 import javax.xml.bind.JAXBException;
@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.Optional;
 import java.util.UUID;
 
-@Path("/sepa-server/")
+
 public class MyServiceTP {
 
 

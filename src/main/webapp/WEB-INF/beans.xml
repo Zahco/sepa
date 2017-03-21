@@ -14,7 +14,7 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 
   <jaxrs:server id="services" address="/">
     <jaxrs:serviceBeans>
-      <bean class="tp.rest.MyServiceTP"/>
+      <bean class="rest.MyServiceTP"/>
     </jaxrs:serviceBeans>
 
     <jaxrs:providers>

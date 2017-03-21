@@ -1,4 +1,4 @@
-package tp.model;
+package model;
 
 import java.io.File;
 import javax.xml.transform.Transformer;
