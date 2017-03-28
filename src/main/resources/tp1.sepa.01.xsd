@@ -6,9 +6,9 @@
     
     <xs:element name="CstmrDrctDbtInitn" type="rootType"/>
     
-    <!-- Direct Debit Transaction Information -->
+    <!-- Direct DeDrctDbtTxInftion Information -->
     <xs:element name="DrctDbtTxInf" type="ddtiType" />
-    <!-- Direct Debit Transaction -->
+    <!-- Direct DeDrctDbtTxInftion -->
     <xs:element name="DrctDbtTx" type="ddtType" />
     <!-- Debtor Agent -->
     <xs:element name="DbtrAgt" type="dAgentType" />

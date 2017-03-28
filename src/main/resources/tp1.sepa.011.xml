@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="tp3.sepa-html.01.xsl"?>
+
 <p:CstmrDrctDbtInitn xmlns:p="http://univ.fr/sepa" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://univ.fr/sepa tp1.sepa.01.xsd ">
   <p:DrctDbtTxInf>
     <PmtId>TEST#001</PmtId>

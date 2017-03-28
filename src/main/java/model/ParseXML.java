@@ -1,5 +1,6 @@
 package model;
 
+import org.apache.cxf.helpers.FileUtils;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -9,14 +10,16 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.SchemaFactory;
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by spaurgeo on 21/03/17.
  */
 public class ParseXML {
 
-    public static String getXML(String xsdFile, String xmlFile) throws SAXException, ParserConfigurationException, IOException {
+    public static String getXML(String xsdFile, String xmlFile) throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setValidating(false);
         factory.setNamespaceAware(true);
@@ -30,6 +33,12 @@ public class ParseXML {
         DocumentBuilder builder = factory.newDocumentBuilder();
         SimpleErrorHandler seh = new SimpleErrorHandler();
         builder.setErrorHandler(seh);
-        return builder.parse(new InputSource(xmlFile)).toString();
+        builder.parse(new InputSource(xmlFile));
+        List<String> lines = FileUtils.readLines(new File(xmlFile));
+        String res = "";
+        for (String line : lines) {
+            res += line;
+        }
+        return res;
     }
 }

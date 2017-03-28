@@ -1,5 +1,9 @@
 package rest;
 
+import model.TransactionFactory;
+import model.sepa.ObjectFactory;
+import model.sepa.RootType;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.util.JAXBSource;
@@ -23,7 +27,7 @@ public class MyClient {
 
     private MyClient() {
         try {
-            jc = JAXBContext.newInstance(Object.class);
+            jc = JAXBContext.newInstance(RootType.class);
         } catch (JAXBException je) {
             System.out.println("Cannot create JAXBContext " + je);
         }
@@ -74,13 +78,21 @@ public class MyClient {
 
     }
 
+    private void resume() {
+        sendRequest("resume", "GET", null);
+    }
+    private void echo() throws JAXBException {
+        sendRequest("echo", "POST", new JAXBSource(jc, TransactionFactory.exampleTransaction()));
+    }
+
     public static void main(String args[]) throws Exception {
         MyClient client = new MyClient();
         client.senario();
     }
 
     public void senario() throws Exception {
-        MyClient client = new MyClient();
+        resume();
+        echo();
 
     }
 

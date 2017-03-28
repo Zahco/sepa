@@ -1,9 +1,12 @@
 package rest;
 
 import model.*;
+import model.sepa.ObjectFactory;
+import model.sepa.RootType;
 import org.xml.sax.SAXException;
 
 import javax.ws.rs.*;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -30,12 +33,20 @@ public class MyServiceTP {
     @GET
     @Path("/resume")
     @Produces("application/xml")
-    public String resume() throws JAXBException, TransformerException, IOException, SAXException, ParserConfigurationException {
+    public String resume() throws Exception {
         String source = dirres + "tp1.sepa.011.xml";
         String xsdFile = dirres + "tp1.sepa.01.xsd";
         String xml = ParseXML.getXML(xsdFile, source);
         return xml;
     }
 
+
+    @POST
+    @Path("/echo")
+    @Consumes("application/xml")
+    public JAXBElement<RootType> echo(RootType sepa) {
+//        return sepa.getDrctDbtTxInf().stream().findFirst().get().getDbtrAgt().getBIC();
+        return new ObjectFactory().createCstmrDrctDbtInitn(sepa);
+    }
 
 }
