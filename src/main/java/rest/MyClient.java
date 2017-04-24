@@ -23,7 +23,7 @@ public class MyClient {
     private JAXBContext jc;
 
     private static final QName qname = new QName("", "");
-    private static final String url = "http://127.0.0.1:8080/sepa-server/";
+    private static final String url = "https://gscl-sepa.herokuapp.com/sepa-server/";
 
     private MyClient() {
         try {
