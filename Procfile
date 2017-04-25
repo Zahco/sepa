@@ -1,1 +1,1 @@
-web: java -jar target/dependency/webapp-runner.jar target/sepa-server.war
+web: java $JAVA_OPTS -Dserver.port=$PORT -jar target/*.jar
