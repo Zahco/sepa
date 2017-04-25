@@ -8,6 +8,9 @@ heroku login
 geoffrey.spaur@gmail.com
 aqwzsxedc.2017
 
+## Création du projet heroku
+heroku create gscl-sepa
+
 ## War deploy
 ### Installation
 heroku plugins:install heroku-cli-deploy
