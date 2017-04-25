@@ -27,6 +27,16 @@ public class MyServiceTP {
 
     }
 
+
+    /**
+     * GET method bound to calls on /animals/{something}
+     */
+    @GET
+    @Path("/accueil")
+    public String accueil() throws Exception {
+        return "Bienvenu au rendu final du projet de Langage Web 2 pour le 30/04/2017 par Camille LEPLUMEY, Geoffrey SPAUR";
+    }
+
     /**
      * GET method bound to calls on /animals/{something}
      */
