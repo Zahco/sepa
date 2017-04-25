@@ -1,1 +1,1 @@
-web: java -jar target/dependency/webapp-runner.jar target/sepa-server.war -p $PORT
+worker: java -jar target/dependency/webapp-runner.jar target/sepa-server.war
