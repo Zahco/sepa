@@ -32,12 +32,8 @@ public class MyServiceTP {
      */
     @GET
     @Path("/resume")
-    @Produces("application/xml")
     public String resume() throws Exception {
-        String source = dirres + "tp1.sepa.011.xml";
-        String xsdFile = dirres + "tp1.sepa.01.xsd";
-        String xml = ParseXML.getXML(xsdFile, source);
-        return xml;
+        return "hello world !";
     }
 
 
