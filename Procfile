@@ -1,1 +1,1 @@
-worker: java -jar target/dependency/webapp-runner.jar target/sepa-server.war
+web: java -jar target/dependency/webapp-runner.jar target/sepa-server.war
