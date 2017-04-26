@@ -40,6 +40,12 @@
       <artifactId>httpclient</artifactId>
       <version>${version.httpclient}</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>9.4-1201-jdbc4</version>
+    </dependency>
 
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -113,6 +119,11 @@
                 </artifactItem>
               </artifactItems>
             </configuration>
+          </execution>
+          <execution>
+              <id>copy-dependencies</id>
+              <phase>package</phase>
+              <goals><goal>copy-dependencies</goal></goals>
           </execution>
         </executions>
       </plugin>
