@@ -2,6 +2,7 @@ package rest;
 
 import model.sepa.ObjectFactory;
 import model.sepa.RootType;
+import rest.DAO.TransactionDAO;
 
 import javax.ws.rs.*;
 import javax.xml.bind.JAXBElement;
@@ -10,6 +11,8 @@ import java.util.*;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;
+
+import static model.TransactionFactory.exampleRootType;
 
 
 public class MyServiceTP {
@@ -21,9 +24,10 @@ public class MyServiceTP {
     private final static String user = "uscplbkrtdpuyd";
     private final static String password = "5ddb4f67ce0824b0b2788d9584198f031aa849e845731d0e29008f1fb2e66130";
 
-    public MyServiceTP() {
-        // Fill our center with some animals
+    private TransactionDAO transactionDAO;
 
+    public MyServiceTP() throws SQLException, ClassNotFoundException {
+        transactionDAO = new TransactionDAO();
     }
 
 
@@ -97,6 +101,15 @@ public class MyServiceTP {
     public JAXBElement<RootType> echo(RootType sepa) {
 //        return sepa.getDrctDbtTxInf().stream().findFirst().get().getDbtrAgt().getBIC();
         return new ObjectFactory().createCstmrDrctDbtInitn(sepa);
+    }
+
+    @GET
+    @Path("/test")
+    @Produces("application/xml")
+    public JAXBElement<RootType> test() throws Exception {
+        transactionDAO.insert(exampleRootType());
+        List<RootType> trans = transactionDAO.getAll();
+        return new ObjectFactory().createCstmrDrctDbtInitn(trans.get(0));
     }
 
 }

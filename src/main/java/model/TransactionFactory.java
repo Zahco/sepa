@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  * Created by spaurgeo on 28/03/17.
  */
 public class TransactionFactory {
-    public static JAXBElement<RootType> exampleTransaction() {
+    public static RootType exampleRootType() {
         DdtiType transaction = new DdtiType();
         // ID
         transaction.setPmtId("Example");
@@ -46,6 +46,10 @@ public class TransactionFactory {
 
         RootType transactions = new RootType();
         transactions.getDrctDbtTxInf().add(transaction);
-        return new ObjectFactory().createCstmrDrctDbtInitn(transactions);
+        return transactions;
+    }
+
+    public static JAXBElement<RootType> exampleTransaction() {
+        return new ObjectFactory().createCstmrDrctDbtInitn(exampleRootType());
     }
 }
