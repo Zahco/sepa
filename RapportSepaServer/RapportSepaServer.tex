@@ -1,0 +1,60 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[a4paper]{geometry}
+\usepackage{multicol}
+\usepackage{listings}
+
+\title{Rapport du projet SEPA \\ sepa-server}
+\author{par Geoffrey SPAUR et Camille LEPLUMEY}
+\date{26 avril 2017}
+\pagestyle{fancy}
+\lhead{Rapport du projet SEPA - sepa-server \\ \textbf{M1GIL} - Geoffrey SPAUR et Camille LEPLUMEY}
+\rhead{\includegraphics[scale=0.5]{logo_univ_rouen.png}}
+\setlength{\headsep}{1cm}
+\begin{document}
+
+\maketitle
+\newpage
+\tableofcontents{}
+\newpage
+\section{Information minimals}
+\subsection{Auteurs}
+Le projet a été réalisé par Camille LEPLUMEY et Geoffrey SPAUR. Ce projet a pour but de mettre en place une API REST 
+permettant la gestion de transactions bancaires.
+\subsection{Adresse du service REST}
+Vous trouverez l’adresse de notre API ici: \url{https://gscl-sepa.herokuapp.com/}.
+\newpage
+
+\section{Description du serveur}
+\subsection{Adresse du service REST}
+Vous trouverez l’adresse de notre API ici: \url{https://gscl-sepa.herokuapp.com/}.
+\subsection{Description précises des requêtes}
+\subsection{Liste des technologies}
+Durant ce projet, nous avons utilisé toutes les technologies vues en cours. Cependant il a été nécessaire 
+d'utiliser des technologies avant-gardiste.
+Notamment pour effectuer la persistance des données et le déploiement de notre service sur une plateforme Cloud.
+\subsubsection{Déploiement du service}
+Comme conseillé par notre chargé de TP, nous avons utilisé la plateforme \href{https://www.heroku.com}{Heroku}.
+Par conséquent nous avons utilisé le CLI afin d'uploader notre projet et de le déployer automatiquement.
+Dans un premier vous devez vous créer et activer un compte sur \href{https://www.heroku.com}{Heroku}. Puis vous pouvez créer une application:
+\begin{lstlisting}[language=bash]
+heroku create <app_name>
+\end{lstlisting}
+Nous avons choisi pour nom d'application: gscl-sepa.
+
+\subsubsection{Persistance des données}
+\subsection{Tutoriel de déploiement}
+\newpage
+
+\section{ Description du client}
+\subsection{Tutoriel d'installation et d’exécution}
+\subsection{Mode d’emploi}
+\subsection{Exemple de fichiers}
+\end{document}
