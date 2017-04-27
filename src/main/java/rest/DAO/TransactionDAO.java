@@ -3,13 +3,11 @@ package rest.DAO;
 import model.ParseXML;
 import model.sepa.RootType;
 import model.sepa.TransactionEntity;
+import org.springframework.web.context.support.ServletContextResource;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,8 +54,15 @@ public class TransactionDAO extends ClassDAO {
     private String marshalling(RootType transaction) throws Exception {
         JAXBContext context = JAXBContext.newInstance(RootType.class);
         OutputStream os = new ByteArrayOutputStream();
-        ParseXML.getXML("/WEB-INF/tp1.sepa.01.xsd", os.toString());
         context.createMarshaller().marshal(transaction, os);
+
+        //Check if good xml
+        System.out.println("test");
+        ClassLoader classLoader = getClass().getClassLoader();
+        String xsdPath = classLoader.getResource("tp1.sepa.01.xsd").getPath();
+        ParseXML.getXML(xsdPath, os.toString());
+        System.out.println("after");
+
         return os.toString();
     }
 

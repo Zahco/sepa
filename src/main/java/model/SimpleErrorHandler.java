@@ -12,18 +12,21 @@ public class SimpleErrorHandler implements ErrorHandler {
 		// TODO Auto-generated method stub
 		errorOccured = true;
 		System.out.println(exception.getMessage());
+		throw new SAXException(exception.getMessage());
 	}
 
 	public void error(SAXParseException exception) throws SAXException {
 		// TODO Auto-generated method stub
 		System.out.println(exception.getMessage());
 		errorOccured = true;
+		throw new SAXException(exception.getMessage());
 	}
 
 	public void fatalError(SAXParseException exception) throws SAXException {
 		// TODO Auto-generated method stub
 		System.out.println(exception.getMessage());
 		errorOccured = true;
+		throw new SAXException(exception.getMessage());
 	}
 	
 	public boolean hasError() {

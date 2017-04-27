@@ -30,8 +30,8 @@ public class TransactionFactory {
         transaction.setDrctDbtTx(ddtt);
 
         DAgentType dat = new DAgentType();
-        dat.setBIC("DAEOFRPPCCT");
-//        dat.setBIC("DAEO");
+//        dat.setBIC("DAEOFRPPCCT");
+        dat.setBIC("DAEO");
         transaction.setDbtrAgt(dat);
 
         DebtorType dt = new DebtorType();
