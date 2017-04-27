@@ -8,6 +8,7 @@ import model.sepa.ObjectFactory;
 import model.sepa.RootType;
 import model.sepa.TransactionEntity;
 import rest.DAO.TransactionDAO;
+import welcome.WelcomeXML;
 
 import javax.ws.rs.*;
 import javax.xml.bind.JAXBElement;
@@ -34,8 +35,9 @@ public class MyServiceTP {
      */
     @GET
     @Path("/accueil")
-    public String accueil() throws Exception {
-        return "Bienvenu au rendu final du projet de Langage Web 2 pour le 30/04/2017 par Camille LEPLUMEY, Geoffrey SPAUR";
+    public WelcomeXML accueil() throws Exception {
+        WelcomeXML welcome = new WelcomeXML("Geoffrey SPAUR, Camille LEPLUMEY", "30/04/2017");
+        return welcome;
     }
 
     /**
