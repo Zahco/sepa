@@ -114,6 +114,13 @@ public class MyServiceTP {
     public RootType getTransaction(@PathParam("n") int num) throws JAXBException, SQLException {
         return transactionDAO.getTransaction(num).get(0);
     }
+    @GET
+    @Path("/reset")
+    @Produces("application/xml")
+    public String reset() throws JAXBException, SQLException {
+        transactionDAO.reset();
+        return "<message>Database restored</message>";
+    }
 
     private String makeNum(int num) {
         StringBuilder result = new StringBuilder();

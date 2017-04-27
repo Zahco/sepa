@@ -21,6 +21,13 @@ public class TransactionDAO extends ClassDAO {
 
     public TransactionDAO() throws ClassNotFoundException, SQLException {}
 
+    public void reset() throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("drop table if exists transaction");
+        preparedStatement.executeUpdate();
+        preparedStatement = connection.prepareStatement("create table transaction(id serial primary key, data xml)");
+        preparedStatement.executeUpdate();
+    }
+
     public List<TransactionEntity> getAll() throws SQLException, JAXBException {
         List<TransactionEntity> result = new ArrayList<>();
         PreparedStatement preparedStatement = connection.prepareStatement("select * from transaction");
