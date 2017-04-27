@@ -1,6 +1,7 @@
 package rest.DAO;
 
 import model.sepa.RootType;
+import model.sepa.TransactionEntity;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -21,9 +22,24 @@ public class TransactionDAO extends ClassDAO {
 
     public TransactionDAO() throws ClassNotFoundException, SQLException {}
 
-    public List<RootType> getAll() throws SQLException, JAXBException {
-        List<RootType> result = new ArrayList<RootType>();
-        PreparedStatement preparedStatement = connection.prepareStatement("select data from transaction");
+    public List<TransactionEntity> getAll() throws SQLException, JAXBException {
+        List<TransactionEntity> result = new ArrayList<>();
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from transaction");
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            result.add(new TransactionEntity(
+                    resultSet.getInt("id"),
+                    unmarshalling(resultSet.getString("data"))
+            ));
+        }
+        return result;
+    }
+
+    public List<RootType> getTransaction(int num) throws SQLException, JAXBException {
+        List<RootType> result = new ArrayList<>();
+        PreparedStatement preparedStatement = connection.prepareStatement("select data from transaction where id = ?");
+        preparedStatement.setInt(1, num);
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             result.add(unmarshalling(resultSet.getString("data")));

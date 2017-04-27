@@ -1,9 +1,12 @@
 package rest;
 
 import model.Stats.TransactionStats;
+import model.resume.TransactionResume;
+import model.resume.TransactionResumes;
 import model.sepa.DdtiType;
 import model.sepa.ObjectFactory;
 import model.sepa.RootType;
+import model.sepa.TransactionEntity;
 import rest.DAO.TransactionDAO;
 
 import javax.ws.rs.*;
@@ -11,6 +14,8 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import static model.TransactionFactory.exampleRootType;
@@ -47,11 +52,11 @@ public class MyServiceTP {
     }
 
     private BigDecimal getTotalTransac() throws SQLException, JAXBException {
-        List<RootType> trans = transactionDAO.getAll();
+        List<TransactionEntity> trans = transactionDAO.getAll();
         BigDecimal montant = BigDecimal.ZERO;
         List<DdtiType> temps;
         for (int i = 0; i < trans.size(); i++) {
-            temps = trans.get(i).getDrctDbtTxInf();
+            temps = trans.get(i).getRt().getDrctDbtTxInf();
             for (int j = 0; j < temps.size(); j++) {
                 montant = montant.add(BigDecimal.ONE);
             }
@@ -60,11 +65,11 @@ public class MyServiceTP {
     }
 
     private BigDecimal getTotalTransacAmount() throws JAXBException, SQLException {
-        List<RootType> trans = transactionDAO.getAll();
+        List<TransactionEntity> trans = transactionDAO.getAll();
         BigDecimal montant = BigDecimal.ZERO;
         List<DdtiType> temps;
         for (int i = 0; i < trans.size(); i++) {
-            temps = trans.get(i).getDrctDbtTxInf();
+            temps = trans.get(i).getRt().getDrctDbtTxInf();
             for (int j = 0; j < temps.size(); j++) {
                 montant = montant.add(temps.get(j).getInstdAmt().getValue());
             }
@@ -77,34 +82,59 @@ public class MyServiceTP {
      */
     @GET
     @Path("/resume")
-    public String resume() throws Exception {
-        return "hello world !";
+    @Produces("application/xml")
+    public TransactionResumes resume() throws Exception {
+        List<TransactionResume> resumeList = new ArrayList<>();
+        List<TransactionEntity> trans = transactionDAO.getAll();
+        List<DdtiType> temps;
+        for (int i = 0; i < trans.size(); i++) {
+            temps = trans.get(i).getRt().getDrctDbtTxInf();
+            for (int j = 0; j < temps.size(); j++) {
+                resumeList.add(new TransactionResume(
+                        makeNum(trans.get(i).getIdent()),
+                        temps.get(j).getPmtId().toString(),
+                        temps.get(j).getInstdAmt().getValue(),
+                        temps.get(j).getDrctDbtTx().getDtOfSgntr().toString()
+                ));
+            }
+        }
+        TransactionResumes placeholder = new TransactionResumes();
+        placeholder.setTransactionResume(resumeList);
+        return placeholder;
     }
 
+    @GET
+    @Path("/trx/{n}/")
+    @Produces("application/xml")
+    public RootType getTransaction(@PathParam("n") int num) throws JAXBException, SQLException {
+        return transactionDAO.getTransaction(num).get(0);
+    }
 
-    @POST
-    @Path("/echo")
-    @Consumes("application/xml")
-    public JAXBElement<RootType> echo(RootType sepa) {
-//        return sepa.getDrctDbtTxInf().stream().findFirst().get().getDbtrAgt().getBIC();
+    private String makeNum(int num) {
+        StringBuilder result = new StringBuilder();
+        result.append("SL");
+        DecimalFormat df = new DecimalFormat("#0000");
+        result.append(df.format(num));
+        return result.toString();
+    }
+
+    @PUT
+    @Path("/depot")
+    @Produces("application/xml")
+    public JAXBElement<RootType> depot(RootType sepa) throws JAXBException, SQLException {
+        transactionDAO.insert(sepa);
         return new ObjectFactory().createCstmrDrctDbtInitn(sepa);
     }
+
+
 
     @GET
     @Path("/test")
     @Produces("application/xml")
     public JAXBElement<RootType> test() throws Exception {
         transactionDAO.insert(exampleRootType());
-        List<RootType> trans = transactionDAO.getAll();
-        BigDecimal montant = BigDecimal.ZERO;
-        List<DdtiType> temps;
-        for (int i = 0; i < trans.size(); i++) {
-            temps = trans.get(i).getDrctDbtTxInf();
-            for (int j = 0; j < temps.size(); j++) {
-                montant.add(temps.get(i).getInstdAmt().getValue());
-            }
-        }
-        return new ObjectFactory().createCstmrDrctDbtInitn(trans.get(0));
+        RootType trans = transactionDAO.getAll().get(0).getRt();
+        return new ObjectFactory().createCstmrDrctDbtInitn(trans);
     }
 
 }
