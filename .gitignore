@@ -8,15 +8,4 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .idea/
-Supprimerait RapportSepaServer/RapportSepaServer-0.png
-Supprimerait RapportSepaServer/RapportSepaServer-1.png
-Supprimerait RapportSepaServer/RapportSepaServer-2.png
-Supprimerait RapportSepaServer/RapportSepaServer-3.png
-Supprimerait RapportSepaServer/RapportSepaServer-4.png
-Supprimerait RapportSepaServer/RapportSepaServer-5.png
-Supprimerait RapportSepaServer/RapportSepaServer.aux
-Supprimerait RapportSepaServer/RapportSepaServer.log
-Supprimerait RapportSepaServer/RapportSepaServer.out
-Supprimerait RapportSepaServer/RapportSepaServer.tex.backup
-Supprimerait RapportSepaServer/RapportSepaServer.toc
-/src/main/java/rest/DAO/ClassDAO.java
+src/main/java/rest/DAO/ClassDAO.java
