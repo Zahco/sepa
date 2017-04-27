@@ -120,7 +120,7 @@ public class MyServiceTP {
         return result.toString();
     }
 
-    @PUT
+    @POST
     @Path("/depot")
     @Produces("application/xml")
     public JAXBElement<RootType> depot(RootType sepa) throws JAXBException, SQLException {

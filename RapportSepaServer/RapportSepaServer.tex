@@ -41,11 +41,20 @@
 	\emph{Resume} permet d'obtenir une courte description des transactions stockées en base.\\
 	\textbf{GET} \url{https://gscl-sepa.herokuapp.com/resume}
 	\begin{lstlisting}[language=xml]
-    <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-      <version>9.4-1201-jdbc4</version>
-    </dependency>
+    <transactionResumes>
+      <transactionResume>
+	<date>1992-03-05</date>
+	<ident>Example</ident>
+	<montant>12322.299999999999272404238581657409</montant>
+	<num>SL0001</num>
+      </transactionResume>
+      <transactionResume>
+	<date>1992-03-05</date>
+	<ident>Example</ident>
+	<montant>12322.299999999999272404238581657409</montant>
+	<num>SL0002</num>
+      </transactionResume>
+    </transactionResumes>
 	  \end{lstlisting}
       \subsubsection{Home}
 	\emph{Home} permet d'obtenir des informations sur le projet tels que le nom des auteurs.\\

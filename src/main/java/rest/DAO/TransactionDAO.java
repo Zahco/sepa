@@ -55,7 +55,7 @@ public class TransactionDAO extends ClassDAO {
     private String marshalling(RootType transaction) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(RootType.class);
         OutputStream os = new ByteArrayOutputStream();
-        context.createMarshaller().marshal(exampleTransaction(), os);
+        context.createMarshaller().marshal(transaction, os);
         return os.toString();
     }
 
