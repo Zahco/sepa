@@ -21,6 +21,7 @@ public class TestMaker {
         OutputStream os = new ByteArrayOutputStream();
         context.createMarshaller().marshal(exampleTransaction(), os);
         System.out.println(os);
-        System.out.println((RootType)context.createUnmarshaller().unmarshal(new ByteArrayInputStream(os.toString().getBytes())));
+//        System.out.println((RootType)context.createUnmarshaller().unmarshal(new ByteArrayInputStream(os.toString().getBytes())));
+        ParseXML.getXML("src/main/resources/tp1.sepa.01.xsd", os.toString());
     }
 }

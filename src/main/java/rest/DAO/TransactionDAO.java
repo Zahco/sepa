@@ -1,5 +1,6 @@
 package rest.DAO;
 
+import model.ParseXML;
 import model.sepa.RootType;
 import model.sepa.TransactionEntity;
 
@@ -46,15 +47,18 @@ public class TransactionDAO extends ClassDAO {
         }
         return result;
     }
-    public void insert(RootType transaction) throws SQLException, JAXBException {
+    public void insert(RootType transaction) throws Exception {
         PreparedStatement preparedStatement = connection.prepareStatement("insert into transaction(data) values (XML(?))");
         preparedStatement.setString(1, marshalling(transaction));
         preparedStatement.executeUpdate();
     }
 
-    private String marshalling(RootType transaction) throws JAXBException {
+    private String marshalling(RootType transaction) throws Exception {
         JAXBContext context = JAXBContext.newInstance(RootType.class);
         OutputStream os = new ByteArrayOutputStream();
+        ServletContext context = getContext();
+        String fullPath = context.getRealPath("/WEB-INF/test/foo.txt");
+        ParseXML.getXML("/WEB-INF/tp1.sepa.01.xsd", os.toString());
         context.createMarshaller().marshal(transaction, os);
         return os.toString();
     }

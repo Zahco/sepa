@@ -10,8 +10,8 @@ import java.sql.SQLException;
 public class ClassDAO {
     protected Connection connection;
     private String url = "jdbc:postgresql://ec2-23-21-227-73.compute-1.amazonaws.com:5432/dak7mg7v6mbi88";
-    private String user = "uscplbkrtdpuyd";
-    private String password = "5ddb4f67ce0824b0b2788d9584198f031aa849e845731d0e29008f1fb2e66130";
+    private String user = "rumzrhungsqeaj";
+    private String password = "b9d4e9d460f900c95cac91f1e10a38cdd8f2c91e71db0e86216c6e04450476b7";
 
     public ClassDAO() throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");

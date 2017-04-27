@@ -1,6 +1,7 @@
 package model;
 
 import java.io.File;
+import java.io.StringReader;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -18,12 +19,13 @@ public class TransformXML {
 		}
 	}
 
-	public static String getXML(String sourcePath, String xsltPath) throws TransformerException {
+	public static String getXML(String sourceXml, String xsltPath) throws TransformerException {
         TransformerFactory tFactory = TransformerFactory.newInstance();
         String result = "";
+        StreamSource source = new StreamSource(new StringReader(sourceXml));
         try {
             Transformer transformer = tFactory.newTransformer(new StreamSource(new File(xsltPath)));
-            transformer.transform(new StreamSource(new File(sourcePath)), new StreamResult(result));
+            transformer.transform(source, new StreamResult(result));
         } catch (Exception e) {
             throw e;
         }

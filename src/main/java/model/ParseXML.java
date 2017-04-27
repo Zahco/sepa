@@ -10,8 +10,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.SchemaFactory;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.List;
 
 /**
@@ -19,7 +21,7 @@ import java.util.List;
  */
 public class ParseXML {
 
-    public static String getXML(String xsdFile, String xmlFile) throws Exception {
+    public static String getXML(String xsdFile, String sourceXml) throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setValidating(false);
         factory.setNamespaceAware(true);
@@ -33,12 +35,8 @@ public class ParseXML {
         DocumentBuilder builder = factory.newDocumentBuilder();
         SimpleErrorHandler seh = new SimpleErrorHandler();
         builder.setErrorHandler(seh);
-        builder.parse(new InputSource(xmlFile));
-        List<String> lines = FileUtils.readLines(new File(xmlFile));
-        String res = "";
-        for (String line : lines) {
-            res += line;
-        }
-        return res;
+        StreamSource source = new StreamSource(new StringReader(sourceXml));
+        builder.parse(new ByteArrayInputStream(sourceXml.getBytes()));
+        return sourceXml;
     }
 }

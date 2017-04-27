@@ -121,7 +121,7 @@ public class MyServiceTP {
     @POST
     @Path("/depot")
     @Produces("application/xml")
-    public JAXBElement<RootType> depot(RootType sepa) throws JAXBException, SQLException {
+    public JAXBElement<RootType> depot(RootType sepa) throws Exception {
         transactionDAO.insert(sepa);
         return new ObjectFactory().createCstmrDrctDbtInitn(sepa);
     }
