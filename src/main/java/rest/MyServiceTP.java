@@ -1,5 +1,6 @@
 package rest;
 
+import model.Stats.TransactionStats;
 import model.sepa.DdtiType;
 import model.sepa.ObjectFactory;
 import model.sepa.RootType;
@@ -37,13 +38,12 @@ public class MyServiceTP {
      */
     @GET
     @Path("/stats")
-    public String stats() throws Exception {
-        StringBuilder result = new StringBuilder();
-        result.append("Nombre total de transactions : ");
-        result.append(getTotalTransac());
-        result.append(" Montant total des transactions : ");
-        result.append(getTotalTransacAmount());
-        return result.toString();
+    @Produces("application/xml")
+    public TransactionStats stats() throws Exception {
+        TransactionStats stats = new TransactionStats();
+        stats.setNbOfTransaction(getTotalTransac());
+        stats.setTotalAmount(getTotalTransacAmount());
+        return stats;
     }
 
     private BigDecimal getTotalTransac() throws SQLException, JAXBException {
