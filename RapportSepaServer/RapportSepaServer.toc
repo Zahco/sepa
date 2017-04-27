@@ -1,0 +1,20 @@
+\contentsline {section}{\numberline {1}Information minimals}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Auteurs}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Adresse du service REST}{3}{subsection.1.2}
+\contentsline {section}{\numberline {2}Description du serveur}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Adresse du service REST}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Description pr\IeC {\'e}cises des requ\IeC {\^e}tes}{4}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Resume}{4}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Home}{4}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Stats}{4}{subsubsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.4}Depot}{4}{subsubsection.2.2.4}
+\contentsline {subsection}{\numberline {2.3}Liste des technologies}{4}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}D\IeC {\'e}ploiement du service}{4}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Persistance des donn\IeC {\'e}es}{5}{subsubsection.2.3.2}
+\contentsline {paragraph}{Instanciation de la base}{5}{section*.2}
+\contentsline {paragraph}{Lien avec l'application}{5}{section*.3}
+\contentsline {subsection}{\numberline {2.4}Tutoriel de d\IeC {\'e}ploiement}{6}{subsection.2.4}
+\contentsline {section}{\numberline {3} Description du client}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}Tutoriel d'installation et d\IeC {\textquoteright }ex\IeC {\'e}cution}{7}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Mode d\IeC {\textquoteright }emploi}{7}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Exemple de fichiers}{7}{subsection.3.3}

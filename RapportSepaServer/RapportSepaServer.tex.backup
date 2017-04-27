@@ -40,26 +40,12 @@
       \subsubsection{Resume}
 	\emph{Resume} permet d'obtenir une courte description des transactions stockées en base.\\
 	\textbf{GET} \url{https://gscl-sepa.herokuapp.com/resume}
-	\begin{lstlisting}[language=xml]
-    <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-      <version>9.4-1201-jdbc4</version>
-    </dependency>
-	  \end{lstlisting}
       \subsubsection{Home}
 	\emph{Home} permet d'obtenir des informations sur le projet tels que le nom des auteurs.\\
 	\textbf{GET} \url{https://gscl-sepa.herokuapp.com/home}
-	
       \subsubsection{Stats}
 	\emph{Stats} permet d'obtenir les statistiques concernant la base de données.\\
 	\textbf{GET} \url{https://gscl-sepa.herokuapp.com/stats}
-	\begin{lstlisting}[language=xml]
-    <transactionStats>
-      <nbOfTransaction>0</nbOfTransaction>
-      <totalAmount>0</totalAmount>
-    </transactionStats>
-	  \end{lstlisting}
       \subsubsection{Depot}
 	\emph{Depot} permet d'ajouter une transaction.\\
 	\textbf{POST} \url{https://gscl-sepa.herokuapp.com/depot}

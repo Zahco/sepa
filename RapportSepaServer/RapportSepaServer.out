@@ -1,0 +1,18 @@
+\BOOKMARK [1][-]{section.1}{Information minimals}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Auteurs}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Adresse du service REST}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{Description du serveur}{}% 4
+\BOOKMARK [2][-]{subsection.2.1}{Adresse du service REST}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.2}{Description pr\351cises des requ\352tes}{section.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Resume}{subsection.2.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Home}{subsection.2.2}% 8
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Stats}{subsection.2.2}% 9
+\BOOKMARK [3][-]{subsubsection.2.2.4}{Depot}{subsection.2.2}% 10
+\BOOKMARK [2][-]{subsection.2.3}{Liste des technologies}{section.2}% 11
+\BOOKMARK [3][-]{subsubsection.2.3.1}{D\351ploiement du service}{subsection.2.3}% 12
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Persistance des donn\351es}{subsection.2.3}% 13
+\BOOKMARK [2][-]{subsection.2.4}{Tutoriel de d\351ploiement}{section.2}% 14
+\BOOKMARK [1][-]{section.3}{ Description du client}{}% 15
+\BOOKMARK [2][-]{subsection.3.1}{Tutoriel d'installation et d\220ex\351cution}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.2}{Mode d\220emploi}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.3}{Exemple de fichiers}{section.3}% 18
