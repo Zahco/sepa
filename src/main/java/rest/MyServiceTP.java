@@ -35,8 +35,11 @@ public class MyServiceTP {
      */
     @GET
     @Path("/accueil")
+    @Produces("application/xml")
     public WelcomeXML accueil() throws Exception {
-        WelcomeXML welcome = new WelcomeXML("Geoffrey SPAUR, Camille LEPLUMEY", "30/04/2017");
+        WelcomeXML welcome = new WelcomeXML();
+        welcome.setAuteurs("Geoffrey SPAUR, Camille LEPLUMEY");
+        welcome.setDate("30/07/04/2017");
         return welcome;
     }
 
