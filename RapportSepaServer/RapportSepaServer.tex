@@ -69,7 +69,7 @@
 	  \end{lstlisting}
 	
       \subsubsection{Reset}
-	\emph{Reset Database} permet de supprimer et recréer la base de données.Cette fonction est utilisée afin de supprimer les données corrompues. \\
+	\emph{Reset Database} permet de supprimer et de recréer la base de données.Cette fonction est utilisée afin de supprimer les données corrompues. \\
 	\textbf{GET} \url{https://gscl-sepa.herokuapp.com/reset}
 	\paragraph{Retour}:
 	  \begin{lstlisting}[language=xml]
@@ -77,7 +77,7 @@
 	  \end{lstlisting}
 	
 	\subsubsection{Test}
-	\emph{Test} permet d'ajouter un jeu d'exemple dans la base de données. \\
+	\emph{Test} permet d'ajouter un exemple de transaction dans la base de données. \\
 	\textbf{GET} \url{https://gscl-sepa.herokuapp.com/test}
 	\paragraph{Retour}:
 	  \begin{lstlisting}[language=xml]
@@ -163,7 +163,7 @@
       </ns2:CstmrDrctDbtInitn>
 	  \end{lstlisting}
       \subsubsection{Transaction}
-	\emph{Transaction} permet de consulter en détail une transaction.\\
+	\emph{Transaction} permet de consulter en détails une transaction.\\
 	\textbf{GET} \url{https://gscl-sepa.herokuapp.com/trx/{id}}
 	\paragraph{Paramètres}:
 	  \begin{lstlisting}[language=xml]
@@ -199,21 +199,21 @@
       Notamment pour effectuer la persistance des données et le déploiement de notre service sur une plateforme Cloud.
       \subsubsection{Déploiement du service}
 	Comme conseillé par notre chargé de TP, nous avons utilisé la plateforme \href{https://www.heroku.com}{Heroku}.
-	Par conséquent nous avons utilisé le CLI afin d'uploader notre projet et de le déployer automatiquement.
+	Par conséquent nous avons utilisé le CLI afin d'\emph{uploader} notre projet et de le déployer automatiquement.
 	Dans un premier vous devez vous créer et activer un compte sur \href{https://www.heroku.com}{Heroku}. Puis vous pouvez créer une application:
 	\begin{lstlisting}[language=bash]
     $ heroku create <app_name>
 	\end{lstlisting}
 	Nous avons choisi pour nom d'application: gscl-sepa.
-	Notre projet est une application maven générant un fichier war. Ce fichier peut être déployé sur tomcat ou glassfish. Afin de générer
-	le fichier war, il suffira d'entré la commande suivante à la racine de notre projet:
+	Notre projet est une application \emph{maven} générant un fichier \emph{war}. Ce fichier peut être déployé sur  \emph{tomcat} ou  \emph{glassfish}. Afin de générer
+	le fichier  \emph{war}, il suffira d'entrer la commande suivante à la racine de notre projet:
 	\begin{lstlisting}[language=bash]
     $ mvn install
 	\end{lstlisting}
-	Le fichier war se trouvera dans le dossier \emph{target}. \\
-	Dans un premier temps, nous avons vérifié que notre application ne produisait pas d'erreur en la testant en local sur glassfish.
-	Puis nous l'avons déployer sur Heroku dans un tomcat comme conseiller par les \href{https://devcenter.heroku.com/articles/war-deployment}{tutoriels} proposé par Heroku.
-	Pour cela nous avons installer le plugins proposé par Heroku:
+	Le fichier  \emph{war} se trouvera dans le dossier \emph{target}. \\
+	Dans un premier temps, nous avons vérifié que notre application ne produisait pas d'erreurs en la testant en local sur  \emph{glassfish}.
+	Puis nous l'avons déployée sur Heroku dans un  \emph{tomcat} comme conseillé par les \href{https://devcenter.heroku.com/articles/war-deployment}{tutoriels} proposés par Heroku.
+	Pour cela nous avons installé le plugin proposé par Heroku:
 	\begin{lstlisting}[language=bash]
     $ heroku plugins:install heroku-cli-deploy
 	\end{lstlisting}
@@ -221,14 +221,14 @@
 	\begin{lstlisting}[language=bash]
     $ heroku war:deploy <path_to_war_file> --app <app_name>
 	\end{lstlisting}
-	Pour finir vous pourrez accéder à votre application avec cette url:\\ \emph{\url{https://<app_name>.herokuapp.com}}.
+	Pour finir vous pourrez accéder à l'application avec cette url:\\ \emph{\url{https://<app_name>.herokuapp.com}}.
 
       \subsubsection{Persistance des données}
 	\paragraph{Instanciation de la base}
-	  Avant de pouvoir sauvegarder nos transaction, nous avons besoin de créer notre base de données.
-	  Nous avons pour cela utiliser \href{https://elements.heroku.com/addons/heroku-postgresql}{une application postgresql proposé par Heroku}.
-	  En créant cette application nous avons au accès à une database pré créée.
-	  Afin d'effectuer nos tests, nous avons installer un plugins permettant d'accès à notre base de données:
+	  Avant de pouvoir sauvegarder nos transactions, nous avons besoin de créer notre base de données.
+	  Nous avons pour cela utilisé \href{https://elements.heroku.com/addons/heroku-postgresql}{une application postgresql proposée par Heroku}.
+	  En créant cette application nous avons eut accès à une database pré-créée.
+	  Afin d'effectuer nos tests, nous avons installé un plugin permettant l'accès à notre base de données:
 	  \begin{lstlisting}[language=bash]
     $ heroku addons:create heroku-postgresql:hobby-dev
 	  \end{lstlisting}
@@ -236,7 +236,7 @@
 	  \begin{lstlisting}[language=bash]
     $ heroku pg:psql --app <app_name>
 	  \end{lstlisting}
-	  Nous effectuer divers tests: création de tables, insertion de données...\\
+	  Nous avons effectué divers tests: création de tables, insertion de données...\\
 	  Après nos tests, nous avons créé notre base de données:
 	  \begin{lstlisting}[language=sql]
     create table transaction (id serial primary key, data xml);
@@ -249,7 +249,7 @@
 	  \begin{lstlisting}[language=sql]
     heroku pg:credentials --app <app_name>
 	  \end{lstlisting}
-	  Maintenant nous allons configurer notre application pour la connecter à notre base de données. Pour cela il nous faut utiliser un \emph{driver} spécifique pour postgresql. 
+	  Maintenant nous allons configurer notre application pour la connecter à notre base de données. Pour cela il nous faut utiliser un \emph{driver} spécifique pour \emph{postgresql}. 
 	  Nous utilisons la dépendance suivante (à ajouter dans le fichier \emph{pom.xml}).
 	  \begin{lstlisting}[language=xml]
     <dependency>
@@ -258,7 +258,7 @@
       <version>9.4-1201-jdbc4</version>
     </dependency>
 	  \end{lstlisting}
-	  Ensuite pour établir la connexion, il faudra charger le driver puis utiliser nos credentials.
+	  Ensuite pour établir la connexion, il faudra charger le driver puis utiliser nos \emph{credentials}.
 	  \begin{lstlisting}[language=java]
     Class.forName("org.postgresql.Driver");
     Connection connection =  
@@ -272,19 +272,19 @@
       Dans cette section, nous allons voir - de manière spécifique - comment déployer notre serveur REST.
       Dans un premier temps, vous devez vous rendre sur notre dépôt GitHub afin de télécharger les sources du projet:\\
       \url{https://github.com/Zahco/sepa}\\
-      Puis vous devrez générer notre fichier war:
+      Puis vous devrez générer notre fichier \emph{war}:
       \begin{lstlisting}[language=bash]
     $ mvn install
       \end{lstlisting}
-      Libre à vous d'utiliser le service tomcat, glassfish, qui vous sied. Pour notre part nous utilisons la plateforme \href{https://www.heroku.com}{Heroku}.
-      Vous devrez donc \href{https://devcenter.heroku.com/articles/heroku-cli}{télécharger et installer le cli}, afin de pouvoir vous connecté à la plateforme en notre nom.
+      Libre à vous d'utiliser le service (\emph{tomcat}, \emph{glassfish}) qui vous sied. Pour notre part nous utilisons la plateforme \href{https://www.heroku.com}{Heroku}.
+      Vous devrez donc \href{https://devcenter.heroku.com/articles/heroku-cli}{télécharger et installer le cli}, afin de pouvoir vous connecter à la plateforme en notre nom.
       \begin{lstlisting}[language=bash]
     $ heroku login
     Enter your Heroku credentials:
     Email: geoffrey.spaur@gmail.com
     Password: aqwzsxedc.2017
       \end{lstlisting}
-      Une fois connecter vous pourrez déployer notre application comme ceci:
+      Une fois connecté vous pourrez déployer notre application comme ceci:
       \begin{lstlisting}[language=bash]
     $ heroku war:deploy target/sepa-server.war --app gscl-sepa
       \end{lstlisting}
@@ -340,8 +340,8 @@
       Afin de faciliter la lecture en levant toute ambiguïté, nous avons rajouté un bouton \emph{Clear} dans
       notre client afin de vider la console.
     \paragraph{Reset Database}
-      Durant le développement du projet, nous avons utiliser un Git public. Pensant que personne ne s'intéresserez à nous,
+      Durant le développement du projet, nous avons utilisé un Git public. Pensant que personne ne s'intéresserait à nous,
       nous avons librement disposé les accès à la base de données. Seulement certain ont décidé de jouer avec. 
-      En ajoutant directement des lignes en base de données, cela corromps le modèle XML. Nous avons ajouter le bouton
+      En ajoutant directement des lignes en base de données, cela corrompt le modèle XML. Nous avons ajouté le bouton
       \emph{Rest Database} pour nettoyer la base de données. Nous avons par-ailleurs caché les mots de passe...
 \end{document}
