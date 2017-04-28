@@ -52,6 +52,13 @@ public class TransactionDAO extends ClassDAO {
         }
         return result;
     }
+
+    public void deleteTransaction(int num) throws SQLException, JAXBException {
+        PreparedStatement preparedStatement = connection.prepareStatement("delete from transaction where id = ?");
+        preparedStatement.setInt(1, num);
+        preparedStatement.executeQuery();
+    }
+
     public void insert(RootType transaction) throws Exception {
         PreparedStatement preparedStatement = connection.prepareStatement("insert into transaction(data) values (XML(?))");
         preparedStatement.setString(1, marshalling(transaction));
