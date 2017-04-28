@@ -56,6 +56,13 @@ public class MyServiceTP {
         return stats;
     }
 
+    @DELETE
+    @Path("/delete/n")
+    @Produces("application/xml")
+    public void deleteTransaction(@PathParam("n") int num) throws JAXBException, SQLException {
+        transactionDAO.deleteTransaction(num);
+    }
+
     private BigDecimal getTotalTransac() throws SQLException, JAXBException {
         List<TransactionEntity> trans = transactionDAO.getAll();
         BigDecimal montant = BigDecimal.ZERO;
