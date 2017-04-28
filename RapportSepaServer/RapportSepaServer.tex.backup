@@ -25,7 +25,7 @@
   \tableofcontents{}
   \newpage
   
-  \section{Information minimals}
+  \section{Information minimales}
     \subsection{Auteurs}
       Le projet a été réalisé par Camille LEPLUMEY et Geoffrey SPAUR. Ce projet a pour but de mettre en place une API REST 
       permettant la gestion de transactions bancaires.
@@ -69,7 +69,7 @@
 	  \end{lstlisting}
 	
       \subsubsection{Reset}
-	\emph{Reset Database} permet de supprimer et récreer la base de données.Cette fonction est utilisée afin de supprimer les données corrompues. \\
+	\emph{Reset Database} permet de supprimer et recréer la base de données.Cette fonction est utilisée afin de supprimer les données corrompues. \\
 	\textbf{GET} \url{https://gscl-sepa.herokuapp.com/reset}
 	\paragraph{Retour}:
 	  \begin{lstlisting}[language=xml]
@@ -192,6 +192,18 @@
 	</ns2:DrctDbtTxInf>
       </ns2:CstmrDrctDbtInitn>
 	  \end{lstlisting}
+	  
+      \subsubsection{Delete}
+	\emph{Delete} permet de supprimer une transaction donnée. \\
+	\textbf{DELETE} \url{https://gscl-sepa.herokuapp.com/delete/{id}}
+	\paragraph{Paramètres}:
+	  \begin{lstlisting}[language=xml]
+      id : int
+	  \end{lstlisting}
+	\paragraph{Retour}:
+	  \begin{lstlisting}[language=xml]
+      <message>Transaction {id} deleted</message>
+	  \end{lstlisting}
     
     \subsection{Liste des technologies}
       Durant ce projet, nous avons utilisé toutes les technologies vues en cours. Cependant il a été nécessaire 
@@ -304,7 +316,7 @@
       \begin{lstlisting}[language=bash]
     $ mvn install
       \end{lstlisting}
-      Executer le fichier jar:
+      Exécuter le fichier jar:
       \begin{lstlisting}[language=bash]
     $ java -jar target/sepa-client.jar
       \end{lstlisting}
@@ -314,22 +326,22 @@
 	\begin{itemize}
 	 \item \emph{Home}: Pour accéder à divers informations
 	 \item \emph{Stat}: Pour afficher les statistiques.
-	 \item \emph{Resume}: Pour obtenir un résumé de chaques transactions.
+	 \item \emph{Resume}: Pour obtenir un résumé de chaque transactions.
 	 \item \emph{Clear}: Pour vider la console.
 	 \item \emph{Reset Database}: Pour vider la base de données.
 	\end{itemize}
 
       \paragraph{}
 	Vous trouverez dans la partie gauche du client un formulaire permettant d'ajouter une transaction personnalisée.
-	Attention, cependant les champs sont soumis à la norme ISO 20022, nottament les champs BIC et IBAN.
+	Attention, cependant les champs sont soumis à la norme ISO 20022, notamment les champs BIC et IBAN.
 	Vous pourrez envoyer le formulaire en cliquant sur le bouton: \emph{Depot}.
       \paragraph{}
-	Dans le centre de l'application, vous pourrez observer les réponses du serveur.
+	Dans le centre de l'application, vous trouverez la console permettant d'observer les réponses du serveur.
       \paragraph{}
 	Enfin dans la partie basse du client, vous pouvez rechercher une transaction pour son identifiant.
 	Grâce à cette recherche, vous obtiendrez toutes les informations concernant la transaction.
 	Pour obtenir un identifiant, il vous suffira d'obtenir la liste des transactions avec l'option \emph{Resume}.
-	Rechercher le champs \emph{transactionResume.num} en retirant les 2 premières lettres.
+	Rechercher l'attribut \emph{transactionResume.num} en retirant les 2 premières lettres.
     \subsection{Exemple de fichiers}
       Vous pouvez ajouter une transaction "exemple" en accédant à l'url suivante: \\
       \url{https://gscl-sepa.herokuapp.com/test}
@@ -337,8 +349,15 @@
   \newpage
   \section{Fonctions complémentaires}
     \paragraph{Clear}
-      Afin de faciliter la lecture en levant toute ambiguité, nous avons rajouté un bouton \emph{Clear} dans
+      Afin de faciliter la lecture en levant toute ambiguïté, nous avons rajouté un bouton \emph{Clear} dans
       notre client afin de vider la console.
     \paragraph{Reset Database}
-      Durant
+      Durant le développement du projet, nous avons utiliser un Git public. Pensant que personne ne s'intéresserez à nous,
+      nous avons librement disposé les accès à la base de données. Seulement certain ont décidé de jouer avec. 
+      En ajoutant directement des lignes en base de données, cela corromps le modèle XML. Nous avons ajouter le bouton
+      \emph{Rest Database} pour nettoyer la base de données. Nous avons par-ailleurs caché les mots de passe...
+    \paragraph{Delete}
+      La fonction delete permet de consommer une transaction dans la base de données (cf: sujet du projet).
+      L'identifiant correspond à la colonne id en bise de données. Vous retrouverez cet identifiant avec la commande \emph{resume},
+      rechercher l'attribut \emph{transactionResume.num} en retirant les 2 premières lettres.
 \end{document}

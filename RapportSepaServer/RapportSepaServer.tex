@@ -192,6 +192,18 @@
 	</ns2:DrctDbtTxInf>
       </ns2:CstmrDrctDbtInitn>
 	  \end{lstlisting}
+	  
+      \subsubsection{Delete}
+	\emph{Delete} permet de supprimer une transaction donnée. \\
+	\textbf{DELETE} \url{https://gscl-sepa.herokuapp.com/delete/{id}}
+	\paragraph{Paramètres}:
+	  \begin{lstlisting}[language=xml]
+      id : int
+	  \end{lstlisting}
+	\paragraph{Retour}:
+	  \begin{lstlisting}[language=xml]
+      <message>Transaction {id} deleted</message>
+	  \end{lstlisting}
     
     \subsection{Liste des technologies}
       Durant ce projet, nous avons utilisé toutes les technologies vues en cours. Cependant il a été nécessaire 
@@ -268,6 +280,7 @@
 	  \begin{lstlisting}[language=bash]
     jdbc:postgresql://<host>:<port>/<database>
 	  \end{lstlisting}
+	  Vous retrouverez ces informations dans le fichier \emph{/src/main/java/rest/DAO/ClassDAO.java}.
     \subsection{Tutoriel de déploiement}
       Dans cette section, nous allons voir - de manière spécifique - comment déployer notre serveur REST.
       Dans un premier temps, vous devez vous rendre sur notre dépôt GitHub afin de télécharger les sources du projet:\\
@@ -329,7 +342,7 @@
 	Enfin dans la partie basse du client, vous pouvez rechercher une transaction pour son identifiant.
 	Grâce à cette recherche, vous obtiendrez toutes les informations concernant la transaction.
 	Pour obtenir un identifiant, il vous suffira d'obtenir la liste des transactions avec l'option \emph{Resume}.
-	Rechercher le champs \emph{transactionResume.num} en retirant les 2 premières lettres.
+	Rechercher l'attribut \emph{transactionResume.num} en retirant les 2 premières lettres.
     \subsection{Exemple de fichiers}
       Vous pouvez ajouter une transaction "exemple" en accédant à l'url suivante: \\
       \url{https://gscl-sepa.herokuapp.com/test}
@@ -344,4 +357,8 @@
       nous avons librement disposé les accès à la base de données. Seulement certain ont décidé de jouer avec. 
       En ajoutant directement des lignes en base de données, cela corromps le modèle XML. Nous avons ajouter le bouton
       \emph{Rest Database} pour nettoyer la base de données. Nous avons par-ailleurs caché les mots de passe...
+    \paragraph{Delete}
+      La fonction delete permet de consommer une transaction dans la base de données (cf: sujet du projet).
+      L'identifiant correspond à la colonne id en bise de données. Vous retrouverez cet identifiant avec la commande \emph{resume},
+      en recherchant l'attribut \emph{transactionResume.num} et en retirant les 2 premières lettres.
 \end{document}
