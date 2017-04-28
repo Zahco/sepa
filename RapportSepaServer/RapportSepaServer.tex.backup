@@ -36,20 +36,162 @@
   \section{Description du serveur}
     \subsection{Adresse du service REST}
       Vous trouverez l’adresse de notre API ici: \url{https://gscl-sepa.herokuapp.com/}.
-    \subsection{Description précises des requêtes}
+    \subsection{Description précise des requêtes}
       \subsubsection{Resume}
 	\emph{Resume} permet d'obtenir une courte description des transactions stockées en base.\\
 	\textbf{GET} \url{https://gscl-sepa.herokuapp.com/resume}
+	\paragraph{Retour}:
+	  \begin{lstlisting}[language=xml]
+      <transactionResumes>
+	<transactionResume>
+	  <date>1992-03-05</date>
+	  <ident>Example</ident>
+	  <montant>12322.2999999999992724</montant>
+	  <num>SL0001</num>
+	</transactionResume>
+	<transactionResume>
+	  <date>1992-03-05</date>
+	  <ident>Example</ident>
+	  <montant>12322.2999999999992724</montant>
+	  <num>SL0002</num>
+	</transactionResume>
+      </transactionResumes>
+	    \end{lstlisting}
       \subsubsection{Home}
 	\emph{Home} permet d'obtenir des informations sur le projet tels que le nom des auteurs.\\
-	\textbf{GET} \url{https://gscl-sepa.herokuapp.com/home}
+	\textbf{GET} \url{https://gscl-sepa.herokuapp.com/accueil}
+	\paragraph{Retour}:
+	  \begin{lstlisting}[language=xml]
+      <welcomeXML>
+	<auteurs>Geoffrey SPAUR, Camille LEPLUMEY</auteurs>
+	<date>30/07/04/2017</date>
+      </welcomeXML>
+	  \end{lstlisting}
+	
+      \subsubsection{Reset}
+	\emph{Reset Database} permet de supprimer et récreer la base de données.Cette fonction est utilisée afin de supprimer les données corrompues. \\
+	\textbf{GET} \url{https://gscl-sepa.herokuapp.com/reset}
+	\paragraph{Retour}:
+	  \begin{lstlisting}[language=xml]
+      <message>Database restored</message>
+	  \end{lstlisting}
+	
+	\subsubsection{Test}
+	\emph{Test} permet d'ajouter un jeu d'exemple dans la base de données. \\
+	\textbf{GET} \url{https://gscl-sepa.herokuapp.com/test}
+	\paragraph{Retour}:
+	  \begin{lstlisting}[language=xml]
+      <ns2:CstmrDrctDbtInitn>
+	<ns2:DrctDbtTxInf>
+	  <PmtId>Example</PmtId>
+	  <InstdAmt Ccy="EUR">12322.2999999999992724</InstdAmt>
+	  <ns2:DrctDbtTx>
+	    <MndtId>FF-57-E7</MndtId>
+	    <DtOfSgntr>1992-03-05</DtOfSgntr>
+	  </ns2:DrctDbtTx>
+	  <ns2:DbtrAgt>
+	    <BIC>DAEOFRPPCCT</BIC>
+	  </ns2:DbtrAgt>
+	  <ns2:Dbtr>
+	    <Nm>Mr Dupont</Nm>
+	  </ns2:Dbtr>
+	  <ns2:DbtrAcct>
+	    <IBAN>FE1405643596877A</IBAN>
+	  </ns2:DbtrAcct>
+	  <RmtInf>Ceci est un commentaire</RmtInf>
+	</ns2:DrctDbtTxInf>
+      </ns2:CstmrDrctDbtInitn>
+	  \end{lstlisting}
+	
       \subsubsection{Stats}
 	\emph{Stats} permet d'obtenir les statistiques concernant la base de données.\\
 	\textbf{GET} \url{https://gscl-sepa.herokuapp.com/stats}
+	\paragraph{Retour}:
+	  \begin{lstlisting}[language=xml]
+      <transactionStats>
+	<nbOfTransaction>0</nbOfTransaction>
+	<totalAmount>0</totalAmount>
+      </transactionStats>
+	    \end{lstlisting}
       \subsubsection{Depot}
 	\emph{Depot} permet d'ajouter une transaction.\\
 	\textbf{POST} \url{https://gscl-sepa.herokuapp.com/depot}
-      
+	\paragraph{Paramètres}:
+	  \begin{lstlisting}[language=xml]
+      <ns2:CstmrDrctDbtInitn>
+	<ns2:DrctDbtTxInf>
+	  <PmtId>Example</PmtId>
+	  <InstdAmt Ccy="EUR">12322.2999999999992724</InstdAmt>
+	  <ns2:DrctDbtTx>
+	    <MndtId>FF-57-E7</MndtId>
+	    <DtOfSgntr>1992-03-05</DtOfSgntr>
+	  </ns2:DrctDbtTx>
+	  <ns2:DbtrAgt>
+	    <BIC>DAEOFRPPCCT</BIC>
+	  </ns2:DbtrAgt>
+	  <ns2:Dbtr>
+	    <Nm>Mr Dupont</Nm>
+	  </ns2:Dbtr>
+	  <ns2:DbtrAcct>
+	    <IBAN>FE1405643596877A</IBAN>
+	  </ns2:DbtrAcct>
+	  <RmtInf>Ceci est un commentaire</RmtInf>
+	</ns2:DrctDbtTxInf>
+      </ns2:CstmrDrctDbtInitn>
+	  \end{lstlisting}
+	\paragraph{Retour}:
+	  \begin{lstlisting}[language=xml]
+      <ns2:CstmrDrctDbtInitn>
+	<ns2:DrctDbtTxInf>
+	  <PmtId>Example</PmtId>
+	  <InstdAmt Ccy="EUR">12322.2999999999992724</InstdAmt>
+	  <ns2:DrctDbtTx>
+	    <MndtId>FF-57-E7</MndtId>
+	    <DtOfSgntr>1992-03-05</DtOfSgntr>
+	  </ns2:DrctDbtTx>
+	  <ns2:DbtrAgt>
+	    <BIC>DAEOFRPPCCT</BIC>
+	  </ns2:DbtrAgt>
+	  <ns2:Dbtr>
+	    <Nm>Mr Dupont</Nm>
+	  </ns2:Dbtr>
+	  <ns2:DbtrAcct>
+	    <IBAN>FE1405643596877A</IBAN>
+	  </ns2:DbtrAcct>
+	  <RmtInf>Ceci est un commentaire</RmtInf>
+	</ns2:DrctDbtTxInf>
+      </ns2:CstmrDrctDbtInitn>
+	  \end{lstlisting}
+      \subsubsection{Transaction}
+	\emph{Transaction} permet de consulter en détail une transaction.\\
+	\textbf{GET} \url{https://gscl-sepa.herokuapp.com/trx/{id}}
+	\paragraph{Paramètres}:
+	  \begin{lstlisting}[language=xml]
+      id : int
+	  \end{lstlisting}
+	\paragraph{Retour}:
+	  \begin{lstlisting}[language=xml]
+      <ns2:CstmrDrctDbtInitn>
+	<ns2:DrctDbtTxInf>
+	  <PmtId>Example</PmtId>
+	  <InstdAmt Ccy="EUR">12322.2999999999992724</InstdAmt>
+	  <ns2:DrctDbtTx>
+	    <MndtId>FF-57-E7</MndtId>
+	    <DtOfSgntr>1992-03-05</DtOfSgntr>
+	  </ns2:DrctDbtTx>
+	  <ns2:DbtrAgt>
+	    <BIC>DAEOFRPPCCT</BIC>
+	  </ns2:DbtrAgt>
+	  <ns2:Dbtr>
+	    <Nm>Mr Dupont</Nm>
+	  </ns2:Dbtr>
+	  <ns2:DbtrAcct>
+	    <IBAN>FE1405643596877A</IBAN>
+	  </ns2:DbtrAcct>
+	  <RmtInf>Ceci est un commentaire</RmtInf>
+	</ns2:DrctDbtTxInf>
+      </ns2:CstmrDrctDbtInitn>
+	  \end{lstlisting}
     
     \subsection{Liste des technologies}
       Durant ce projet, nous avons utilisé toutes les technologies vues en cours. Cependant il a été nécessaire 
@@ -156,6 +298,47 @@
 
   \section{ Description du client}
     \subsection{Tutoriel d'installation et d’exécution}
+      Afin d'utiliser notre client vous devrez le télécharger ici:\\
+      \url{https://github.com/Zahco/sepa-client}\\
+      Compiler les sources: 
+      \begin{lstlisting}[language=bash]
+    $ mvn install
+      \end{lstlisting}
+      Executer le fichier jar:
+      \begin{lstlisting}[language=bash]
+    $ java -jar target/sepa-client.jar
+      \end{lstlisting}
     \subsection{Mode d’emploi}
+      \paragraph{}
+	Vous trouverez dans la partie haute du client différents boutons parlant d'eux même. 
+	\begin{itemize}
+	 \item \emph{Home}: Pour accéder à divers informations
+	 \item \emph{Stat}: Pour afficher les statistiques.
+	 \item \emph{Resume}: Pour obtenir un résumé de chaques transactions.
+	 \item \emph{Clear}: Pour vider la console.
+	 \item \emph{Reset Database}: Pour vider la base de données.
+	\end{itemize}
+
+      \paragraph{}
+	Vous trouverez dans la partie gauche du client un formulaire permettant d'ajouter une transaction personnalisée.
+	Attention, cependant les champs sont soumis à la norme ISO 20022, nottament les champs BIC et IBAN.
+	Vous pourrez envoyer le formulaire en cliquant sur le bouton: \emph{Depot}.
+      \paragraph{}
+	Dans le centre de l'application, vous pourrez observer les réponses du serveur.
+      \paragraph{}
+	Enfin dans la partie basse du client, vous pouvez rechercher une transaction pour son identifiant.
+	Grâce à cette recherche, vous obtiendrez toutes les informations concernant la transaction.
+	Pour obtenir un identifiant, il vous suffira d'obtenir la liste des transactions avec l'option \emph{Resume}.
+	Rechercher le champs \emph{transactionResume.num} en retirant les 2 premières lettres.
     \subsection{Exemple de fichiers}
+      Vous pouvez ajouter une transaction "exemple" en accédant à l'url suivante: \\
+      \url{https://gscl-sepa.herokuapp.com/test}
+      
+  \newpage
+  \section{Fonctions complémentaires}
+    \paragraph{Clear}
+      Afin de faciliter la lecture en levant toute ambiguité, nous avons rajouté un bouton \emph{Clear} dans
+      notre client afin de vider la console.
+    \paragraph{Reset Database}
+      Durant
 \end{document}

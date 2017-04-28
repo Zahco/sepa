@@ -26,6 +26,10 @@ public class ParseXML {
         factory.setValidating(false);
         factory.setNamespaceAware(true);
 
+        System.out.println(xsdFile);
+        System.out.println(new File(xsdFile).exists());
+        System.out.println(sourceXml);
+
         SchemaFactory schemaFactory =
                 SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
 
