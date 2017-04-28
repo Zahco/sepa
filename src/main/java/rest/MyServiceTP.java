@@ -57,10 +57,11 @@ public class MyServiceTP {
     }
 
     @DELETE
-    @Path("/delete/n")
+    @Path("/delete/{n}")
     @Produces("application/xml")
-    public void deleteTransaction(@PathParam("n") int num) throws JAXBException, SQLException {
+    public String deleteTransaction(@PathParam("n") int num) throws JAXBException, SQLException {
         transactionDAO.deleteTransaction(num);
+        return "<message>Transaction " + num + " deleted</message>";
     }
 
     private BigDecimal getTotalTransac() throws SQLException, JAXBException {
